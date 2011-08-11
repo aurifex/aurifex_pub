@@ -1,0 +1,19 @@
+/* $Id: custom_search.css,v 1.1.4.3 2010/11/14 15:09:19 jdanthinne Exp $ */
+
+input.custom-search-default-value { color:#999;}
+
+#elements tr.region-message {
+  font-weight:normal;
+  color:#999;
+}
+
+#elements tr.region-populated {
+  display:none;
+}
+
+fieldset.custom_search-popup {
+  display:none;
+  position:absolute;
+  top:auto;
+  margin:0;
+}

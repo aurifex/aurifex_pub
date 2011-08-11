@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file i18n_media.module
+ *  Image / media translation helper.
+ *
+ *  Automatically rewrites output HTML media tags (img, object, embed) to
+ *  use translated versions of media, if files are present on disk.
+ */
+
+// Add phptemplate_page() override if media translation is enabled
+if (variable_get('i18n_media_enabled', FALSE)) {
+  require dirname(__FILE__) . '/i18n_media_phptemplate_render_template.inc';
+}
+
+/**
+ * Implements hook_menu().
+ */
+function i18n_media_menu() {
+  $items = array();
+
+  $items['admin/config/regional/i18n/media'] = array(
+    'title' => 'Media / Image Translation',
+    'description' => 'Enable or disable media / image translation.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('i18n_media_admin'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'i18n_media.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 30,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ **/
+function i18n_media_theme() {
+  return array(
+    'i18n_media_tests' => array(
+      'variables' => array(),
+    ),
+  );
+}
+
+/**
+ * Theme function for media tests table.
+ **/
+function theme_i18n_media_tests() {
+  $path = base_path() . drupal_get_path('module', 'i18n_media') . '/tests';
+  $snippets = array(
+    t('An image') => '<img src="' . $path . '/test.png" alt="Test graphic" />',
+    t('A form input') => '<form action="#"><input type="image" src="' . $path . '/test.png" />',
+    t('An embed tag') => '<embed src="' . $path . '/test.png" type="image/png" />',
+    t('An offsite URL, should NOT be translated') => '<img src="http://www.google.com/images/logo.png" alt="The Google" style="width: 138px; height: 48px;" />',
+  );
+
+  $rows = array();
+  foreach ($snippets as $label => $snippet) {
+    $rows[] = array($label, '<code>' . htmlspecialchars($snippet) . '</code>', $snippet);
+  }
+
+  return theme('table', array('header' => array(t('Test'), t('HTML'), t('Result')), 'rows' => $rows));
+}

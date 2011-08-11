@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * Test the basic functionality of the i18n_media module.
+ */
+class i18nMediaTests extends DrupalWebTestCase {
+
+  function __construct() {
+    parent::__construct();
+  }
+
+  /**
+   * Clean out the testing environment.
+   **/
+  function setUp() {
+    parent::setUp();
+  }
+
+  /**
+   * Clean out the testing environment.
+   **/
+  function tearDown() {
+    parent::tearDown();
+  }
+
+  /**
+   * Implementation of the DrupalTestCase "get_info" method.
+   **/
+  function getInfo() {
+    return array(
+      'name' => t('i18n Media Tests'),
+      'description' => t('Test the basic functionality of the i18n_media module.'),
+      'group' => 'Multilanguage'
+    );
+  }
+
+  /**
+   * Basic tests of the i18n_media module.
+   **/
+  function testi18nMedia() {
+    // Write tests here.
+  }
+
+}

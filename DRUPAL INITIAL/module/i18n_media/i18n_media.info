@@ -1,0 +1,13 @@
+name = Image / Media Translation
+description = "Automatically rewrites output HTML media tags (img, object, embed) to use translated versions of media, if files are present on disk."
+dependencies[] = locale
+package = Multilingual
+core = 7.x
+files[] = tests/i18n_media.test
+
+; Information added by drupal.org packaging script on 2011-05-27
+version = "7.x-1.0-beta2"
+core = "7.x"
+project = "i18n_media"
+datestamp = "1306533115"
+
